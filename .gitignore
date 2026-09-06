@@ -1,0 +1,49 @@
+# Entornos virtuales
+venv/
+.venv/
+env/
+.env/
+ENV/
+
+# Bytecode de Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Distribucion y empaquetado
+build/
+dist/
+*.spec
+*.egg-info/
+.eggs/
+
+# Variables de entorno
+.env
+.env.local
+
+# IDEs
+.idea/
+.vscode/
+*.suo
+*.user
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.bak
+
+# Archivos de salida generados (opcional: comentar si quieres versionar ejemplos)
+tarjeta_*.jpg
+tarjeta_*.png
+
+# Archivos de IA
+PROMPT.md
+DESIGN.md

@@ -1,0 +1,15 @@
+# Dependencias de PS Card Generator
+# Requiere Python 3.10+ en Windows con Adobe Photoshop instalado
+
+# Automatizacion de Photoshop via COM (Windows)
+photoshop-python-api==0.21.3
+
+# Interfaz grafica moderna basada en Tkinter
+customtkinter==5.2.2
+
+# Lectura de archivos Excel
+pandas==2.2.3
+openpyxl==3.1.5
+
+# Empaquetado como ejecutable .exe (uso en desarrollo/build, no en runtime)
+pyinstaller==6.11.1
