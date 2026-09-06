@@ -1,7 +1,7 @@
 """
 main.py
-Interfaz grafica de la herramienta de generacion de tarjetas desde Photoshop.
-Usa customtkinter para un aspecto moderno con el sistema de diseno tactico.
+Interfaz gráfica de la herramienta de generación de tarjetas desde Photoshop.
+Usa customtkinter para un aspecto moderno con el sistema de diseño táctico.
 """
 
 from __future__ import annotations
@@ -22,7 +22,7 @@ import photoshop_manager as ps_mgr
 def load_names_from_file(path: str) -> list[str]:
     """
     Lee nombres desde un archivo CSV o Excel (.xlsx / .xls).
-    Toma la primera columna con datos no vacios.
+    Toma la primera columna con datos no vacíos.
     """
     p = Path(path)
     ext = p.suffix.lower()
@@ -48,7 +48,7 @@ def load_names_from_file(path: str) -> list[str]:
 
 
 # ---------------------------------------------------------------------------
-# Paleta de colores (basada en DESIGN.md - sistema tactico)
+# Paleta de colores (basada en DESIGN.md - sistema táctico)
 # ---------------------------------------------------------------------------
 
 COLORS = {
@@ -166,7 +166,7 @@ class App(ctk.CTk):
         self._build_ui()
 
     # -----------------------------------------------------------------------
-    # Construccion de la interfaz
+    # Construcción de la interfaz
     # -----------------------------------------------------------------------
 
     def _build_ui(self):
@@ -204,14 +204,14 @@ class App(ctk.CTk):
         content = ctk.CTkFrame(scroll, fg_color="transparent")
         content.pack(fill="both", expand=True, padx=28, pady=20)
 
-        # --- Seccion: Plantilla PSD -------------------------------------------
+        # --- Sección: Plantilla PSD -------------------------------------------
         self._section_psd(content)
         self._section_layer(content)
         self._section_names(content)
         self._section_output(content)
         self._section_format(content)
 
-        # --- Separador + boton Generar ----------------------------------------
+        # --- Separador + botón Generar ----------------------------------------
         make_separator(self).pack(fill="x")
         self._build_footer()
 
@@ -278,7 +278,7 @@ class App(ctk.CTk):
         ).pack(side="left")
 
         make_label(
-            frame, "O pega los nombres directamente (uno por linea):"
+            frame, "O pega los nombres directamente (uno por línea):"
         ).pack(anchor="w", pady=(0, 4))
 
         self._names_text = ctk.CTkTextbox(
@@ -364,7 +364,7 @@ class App(ctk.CTk):
         )
         self._log_box.pack(fill="x", padx=24, pady=(8, 0))
 
-        # Boton principal
+        # Botón principal
         self._generate_btn = make_button(
             footer, "// GENERAR TARJETAS", self._start_generation, primary=True
         )
@@ -375,7 +375,7 @@ class App(ctk.CTk):
     # -----------------------------------------------------------------------
 
     def _card(self, parent, title: str) -> ctk.CTkFrame:
-        """Crea un panel de seccion con titulo y borde rojo lateral."""
+        """Crea un panel de sección con título y borde rojo lateral."""
         outer = ctk.CTkFrame(
             parent,
             fg_color=COLORS["bg_card"],
@@ -511,7 +511,7 @@ class App(ctk.CTk):
         return [line.strip() for line in raw.splitlines() if line.strip()]
 
     # -----------------------------------------------------------------------
-    # Generacion
+    # Generación
     # -----------------------------------------------------------------------
 
     def _start_generation(self):
@@ -543,7 +543,7 @@ class App(ctk.CTk):
         self._set_ui_busy(True)
         self._progress_bar.set(0)
         self._clear_log()
-        self._log(f"Iniciando generacion de {len(names)} tarjetas...")
+        self._log(f"Iniciando generación de {len(names)} tarjetas...")
 
         def worker():
             try:
@@ -584,14 +584,14 @@ class App(ctk.CTk):
         for r in fail:
             self._log(f"ERROR [{r.name}]: {r.error}")
 
-        # Dialogo de resumen
+        # Diálogo de resumen
         msg = (
-            f"Imagenes generadas exitosamente: {len(ok)}\n"
+            f"Imágenes generadas exitosamente: {len(ok)}\n"
             f"Errores: {len(fail)}\n\n"
             f"Carpeta de salida:\n{self._output_folder}"
         )
         if messagebox.askyesno(
-            "Generacion completada",
+            "Generación completada",
             msg + "\n\n¿Abrir carpeta de destino?",
         ):
             ps_mgr.open_folder(self._output_folder)
@@ -599,7 +599,7 @@ class App(ctk.CTk):
     def _on_generation_error(self, error: str):
         self._is_generating = False
         self._set_ui_busy(False)
-        self._progress_label.configure(text="ERROR EN LA GENERACION")
+        self._progress_label.configure(text="ERROR EN LA GENERACIÓN")
         self._show_error(error)
 
     # -----------------------------------------------------------------------

@@ -1,7 +1,7 @@
 """
 photoshop_manager.py
-Modulo de automatizacion de Adobe Photoshop via photoshop-python-api (COM/Windows).
-No contiene logica de interfaz grafica.
+Módulo de automatización de Adobe Photoshop via photoshop-python-api (COM/Windows).
+No contiene lógica de interfaz gráfica.
 """
 
 from __future__ import annotations
@@ -23,10 +23,10 @@ except ImportError:
 # Constantes
 # ---------------------------------------------------------------------------
 
-# Caracteres invalidos en nombres de archivo de Windows
+# Caracteres inválidos en nombres de archivo de Windows
 _INVALID_CHARS_RE = re.compile(r'[/\\:*?"<>|]')
 
-# Codigos de exportacion
+# Códigos de exportación
 _EXPORT_FORMAT = {
     "JPG": "jpeg",
     "PNG": "png",
@@ -38,10 +38,10 @@ _EXPORT_FORMAT = {
 # ---------------------------------------------------------------------------
 
 def sanitize_filename(name: str) -> str:
-    """Elimina caracteres invalidos para nombres de archivo de Windows."""
+    """Elimina caracteres inválidos para nombres de archivo de Windows."""
     sanitized = _INVALID_CHARS_RE.sub("_", name).strip()
     if not sanitized:
-        raise ValueError(f"El nombre '{name}' no produce un nombre de archivo valido.")
+        raise ValueError(f"El nombre '{name}' no produce un nombre de archivo válido.")
     return sanitized
 
 
@@ -53,7 +53,7 @@ def get_text_layers(psd_path: str) -> list[str]:
     """
     if ps is None:
         raise RuntimeError(
-            "La libreria 'photoshop-python-api' no esta instalada. "
+            "La librería 'photoshop-python-api' no está instalada. "
             "Ejecuta: pip install photoshop-python-api"
         )
 
@@ -87,11 +87,11 @@ def _collect_text_layers_recursive(layer_set, names: list[str]) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Generacion de tarjetas
+# Generación de tarjetas
 # ---------------------------------------------------------------------------
 
 class GenerationResult:
-    """Resultado de una generacion individual."""
+    """Resultado de una generación individual."""
 
     def __init__(self, name: str, success: bool, error: str = ""):
         self.name = name
@@ -110,14 +110,14 @@ def generate_cards(
     """
     Genera una imagen por cada nombre en `names`.
 
-    Parametros
+    Parámetros
     ----------
     psd_path       : Ruta absoluta al archivo .psd plantilla.
     layer_name     : Nombre exacto de la capa de texto a reemplazar.
     names          : Lista de nombres con los que generar las tarjetas.
-    output_folder  : Carpeta de destino para las imagenes generadas.
+    output_folder  : Carpeta de destino para las imágenes generadas.
     output_format  : 'JPG' o 'PNG'.
-    progress_callback : Funcion opcional (actual, total, nombre_actual).
+    progress_callback : Función opcional (actual, total, nombre_actual).
 
     Retorna
     -------
@@ -125,7 +125,7 @@ def generate_cards(
     """
     if ps is None:
         raise RuntimeError(
-            "La libreria 'photoshop-python-api' no esta instalada. "
+            "La librería 'photoshop-python-api' no está instalada. "
             "Ejecuta: pip install photoshop-python-api"
         )
 
@@ -144,7 +144,7 @@ def generate_cards(
         text_layer = _find_layer(doc, layer_name)
         if text_layer is None:
             raise LookupError(
-                f"No se encontro la capa de texto '{layer_name}' en el documento."
+                f"No se encontró la capa de texto '{layer_name}' en el documento."
             )
 
         results: list[GenerationResult] = []
